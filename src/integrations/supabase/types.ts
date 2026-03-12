@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      pins: {
+        Row: {
+          category: Database["public"]["Enums"]["pin_category"]
+          created_at: string
+          description: string | null
+          id: string
+          latitude: number
+          longitude: number
+          resolved: boolean
+          type: Database["public"]["Enums"]["pin_type"]
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["pin_category"]
+          created_at?: string
+          description?: string | null
+          id?: string
+          latitude: number
+          longitude: number
+          resolved?: boolean
+          type: Database["public"]["Enums"]["pin_type"]
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["pin_category"]
+          created_at?: string
+          description?: string | null
+          id?: string
+          latitude?: number
+          longitude?: number
+          resolved?: boolean
+          type?: Database["public"]["Enums"]["pin_type"]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +55,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      pin_category: "food" | "medical" | "rescue" | "shelter"
+      pin_type: "need_help" | "can_help"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +183,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      pin_category: ["food", "medical", "rescue", "shelter"],
+      pin_type: ["need_help", "can_help"],
+    },
   },
 } as const
